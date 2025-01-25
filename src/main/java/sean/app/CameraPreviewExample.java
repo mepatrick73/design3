@@ -45,6 +45,11 @@ public class CameraPreviewExample {
 
         Mat frame;
         DataOutputQueue preview = d.getOutputQueue("preview");
+        Dictionary dictionary= Aruco.getPredefinedDictionary(Aruco.DICT_4X4_50);
+        DetectorParameters parameters= DetectorParameters.create();
+        ArucoDetector detector= new ArucoDetector(dictionary,parameters);
+        List<Mat> corners = new ArrayList<Mat>();
+        Mat ids = new Mat();
 
         while (true) {
             ImgFrame imgFrame = preview.getImgFrame();
@@ -52,6 +57,7 @@ public class CameraPreviewExample {
                 System.out.println("Hello World!");
                 System.out.printf("Frame - w: %d, h: %d\n", imgFrame.getWidth(), imgFrame.getHeight());
                 frame = new Mat(imgFrame.getHeight(), imgFrame.getWidth(), CV_8UC3, imgFrame.getData());
+                detector.detectMarkers(frame, corners, ids);
                 imshow("preview", frame);
                 int key = waitKey(1);
                 if (key == 'q') {
