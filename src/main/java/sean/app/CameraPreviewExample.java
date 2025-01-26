@@ -70,7 +70,7 @@ public class CameraPreviewExample {
                 System.out.printf("Frame - w: %d, h: %d\n", imgFrame.getWidth(), imgFrame.getHeight());
                 frame = new Mat(imgFrame.getHeight(), imgFrame.getWidth(), CV_8UC3, imgFrame.getData());
                 detector.detectMarkers(frame, corners, ids);
-                imshow("preview", frame);
+                //imshow("preview", frame);
 
                 drawDetectedMarkers(frame, corners, ids,new Scalar(1));
 
