@@ -9,6 +9,7 @@ import org.bytedeco.opencv.opencv_highgui.*;
 import static org.bytedeco.depthai.global.depthai.*;
 import static org.bytedeco.opencv.global.opencv_core.*;
 import static org.bytedeco.opencv.global.opencv_highgui.*;
+import static org.bytedeco.opencv.global.opencv_objdetect.drawDetectedMarkers;
 
 import org.bytedeco.opencv.opencv_objdetect.ArucoDetector;
 import org.bytedeco.opencv.opencv_objdetect.DetectorParameters;
@@ -70,8 +71,9 @@ public class CameraPreviewExample {
                 frame = new Mat(imgFrame.getHeight(), imgFrame.getWidth(), CV_8UC3, imgFrame.getData());
                 detector.detectMarkers(frame, corners, ids);
                 imshow("preview", frame);
-                System.out.println("OpenCV size idds  " + ids.size());
-                System.out.println("OpenCV Mat Corner: " + String.valueOf(corners.size()));
+
+                drawDetectedMarkers(frame, corners, ids,new Scalar(1));
+
                 int key = waitKey(1);
                 if (key == 'q') {
                     System.exit(0);
