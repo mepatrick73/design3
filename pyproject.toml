@@ -1,0 +1,10 @@
+[project]
+name = "design3"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "depthai>=2.29.0.0",
+    "opencv-python>=4.11.0.86",
+]
