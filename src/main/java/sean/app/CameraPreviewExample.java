@@ -9,7 +9,7 @@ import org.bytedeco.opencv.opencv_highgui.*;
 import static org.bytedeco.depthai.global.depthai.*;
 import static org.bytedeco.opencv.global.opencv_core.*;
 import static org.bytedeco.opencv.global.opencv_highgui.*;
-import static org.bytedeco.opencv.global.opencv_objdetect.drawDetectedMarkers;
+import static org.bytedeco.opencv.global.opencv_objdetect.*;
 
 import org.bytedeco.opencv.opencv_objdetect.ArucoDetector;
 import org.bytedeco.opencv.opencv_objdetect.DetectorParameters;
@@ -56,7 +56,8 @@ public class CameraPreviewExample {
 
         Mat frame;
         DataOutputQueue preview = d.getOutputQueue("preview");
-        Dictionary dictionary= opencv_objdetect.extendDictionary(4,50);
+        Dictionary dictionary= getPredefinedDictionary(DICT_4X4_50);
+        System.out.println(dictionary.toString());
 
         while (true) {
             ImgFrame imgFrame = preview.getImgFrame();
