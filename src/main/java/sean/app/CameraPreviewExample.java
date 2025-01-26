@@ -70,6 +70,8 @@ public class CameraPreviewExample {
                 frame = new Mat(imgFrame.getHeight(), imgFrame.getWidth(), CV_8UC3, imgFrame.getData());
                 detector.detectMarkers(frame, corners, ids);
                 imshow("preview", frame);
+                System.out.println("OpenCV size idds  " + ids.size());
+                System.out.println("OpenCV Mat Corner: " + String.valueOf(corners.size()));
                 int key = waitKey(1);
                 if (key == 'q') {
                     System.exit(0);
