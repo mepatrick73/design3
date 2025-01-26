@@ -61,18 +61,14 @@ public class CameraPreviewExample {
         while (true) {
             ImgFrame imgFrame = preview.getImgFrame();
             if (imgFrame != null) {
-                DetectorParameters parameters= new DetectorParameters();
-                RefineParameters refineParameters = new RefineParameters();
-                ArucoDetector detector= new ArucoDetector(dictionary,parameters, refineParameters);
+                ArucoDetector detector= new ArucoDetector(dictionary);
                 MatVector corners = new MatVector();
                 Mat ids = new Mat();
                 System.out.println("Hello World!");
                 System.out.printf("Frame - w: %d, h: %d\n", imgFrame.getWidth(), imgFrame.getHeight());
                 frame = new Mat(imgFrame.getHeight(), imgFrame.getWidth(), CV_8UC3, imgFrame.getData());
                 detector.detectMarkers(frame, corners, ids);
-
-                System.out.println(ids.rows() + " ");
-                drawDetectedMarkers(frame, corners, ids,new Scalar(1));
+                System.out.println(corners.size());
                 imshow("preview", frame);
 
                 int key = waitKey(1);
