@@ -3,11 +3,21 @@ package sean.app;
 import org.bytedeco.javacpp.*;
 import org.bytedeco.depthai.*;
 import org.bytedeco.depthai.Device;
+import org.bytedeco.opencv.global.opencv_objdetect;
 import org.bytedeco.opencv.opencv_core.*;
 import org.bytedeco.opencv.opencv_highgui.*;
 import static org.bytedeco.depthai.global.depthai.*;
 import static org.bytedeco.opencv.global.opencv_core.*;
 import static org.bytedeco.opencv.global.opencv_highgui.*;
+
+import org.bytedeco.opencv.opencv_objdetect.ArucoDetector;
+import org.bytedeco.opencv.opencv_objdetect.DetectorParameters;
+import org.bytedeco.opencv.opencv_objdetect.Dictionary;
+import org.bytedeco.opencv.opencv_objdetect.RefineParameters;
+import org.opencv.aruco.Aruco;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CameraPreviewExample {
     static Pipeline createCameraPipeline() {
@@ -45,10 +55,11 @@ public class CameraPreviewExample {
 
         Mat frame;
         DataOutputQueue preview = d.getOutputQueue("preview");
-        Dictionary dictionary= Aruco.getPredefinedDictionary(Aruco.DICT_4X4_50);
-        DetectorParameters parameters= DetectorParameters.create();
-        ArucoDetector detector= new ArucoDetector(dictionary,parameters);
-        List<Mat> corners = new ArrayList<Mat>();
+        Dictionary dictionary= opencv_objdetect.extendDictionary(4,50);
+        DetectorParameters parameters= new DetectorParameters();
+        RefineParameters refineParameters = new RefineParameters();
+        ArucoDetector detector= new ArucoDetector(dictionary,parameters, refineParameters);
+        MatVector corners = new MatVector();
         Mat ids = new Mat();
 
         while (true) {
