@@ -71,6 +71,7 @@ public class CameraPreviewExample {
                 frame = new Mat(imgFrame.getHeight(), imgFrame.getWidth(), CV_8UC3, imgFrame.getData());
                 detector.detectMarkers(frame, corners, ids);
 
+                System.out.println(ids.rows() + " ");
                 drawDetectedMarkers(frame, corners, ids,new Scalar(1));
                 imshow("preview", frame);
 
