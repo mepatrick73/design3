@@ -57,10 +57,10 @@ public class CameraPreviewExample {
         Mat frame;
         DataOutputQueue preview = d.getOutputQueue("preview");
         Dictionary dictionary= getPredefinedDictionary(DICT_4X4_50);
-        System.out.println(dictionary.toString());
+        //System.out.println(dictionary.toString());
 
         while (true) {
-            System.out.println(dictionary.toString());
+            //System.out.println(dictionary.toString());
             ImgFrame imgFrame = preview.getImgFrame();
             if (imgFrame != null) {
                 ArucoDetector detector= new ArucoDetector(dictionary);
