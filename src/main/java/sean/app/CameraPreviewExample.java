@@ -60,6 +60,7 @@ public class CameraPreviewExample {
         System.out.println(dictionary.toString());
 
         while (true) {
+            System.out.println(dictionary.toString());
             ImgFrame imgFrame = preview.getImgFrame();
             if (imgFrame != null) {
                 ArucoDetector detector= new ArucoDetector(dictionary);
